@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "eslint-config-standard": "^17.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.32.0",
+    "eslint-formatter-gitlab": "^4.0.0",
+    "prettier": "3.2.5"
+  },
+  "scripts": {
+    "fix": "prettier --write s2check.user.js; eslint s2check.user.js --fix"
+  }
+}

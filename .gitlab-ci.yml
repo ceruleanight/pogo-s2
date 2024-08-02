@@ -1,0 +1,26 @@
+default:
+    image: node:18-alpine
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
+eslint:
+    script:
+        - npm ci
+        - npx eslint --format gitlab s2check.user.js
+    artifacts:
+        reports:
+            codequality: gl-codequality.json
+
+prettier:
+    script:
+        - npm ci
+        - npx prettier --check s2check.user.js
+    artifacts:
+        reports:
+            codequality: gl-codequality.json
+
