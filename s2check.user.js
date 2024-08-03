@@ -2570,13 +2570,6 @@
         */
         // Manual import, export and reset data
         thisPlugin.pogoActionsDialog = function () {
-            let goldCount = 0
-
-            for (const key in gyms) {
-                if (gyms[key].medal && gyms[key].medal.toLowerCase() === "gold") {
-                    goldCount++
-                }
-            }
             const content = `<div id="pogoSetbox">
                 <a id="save-dialog" title="Select the data to save from the info on screen">Save...</a>
                 <a onclick="window.plugin.pogo.optReset();return false;" title="Deletes all Pokemon Go markers">Reset PoGo portals</a>
@@ -2584,7 +2577,7 @@
                 <a onclick="window.plugin.pogo.optExport();return false;" title="Exports a JSON file with all the PoGo data">Export Gyms & Pokestops</a>
                 <div class="stop_counts">
                 <div><span>Gyms:</span>${Object.keys(gyms).length}</div>
-                <div><span>Gold Gyms:</span>${goldCount}</div>
+                <div><span>Gold Gyms:</span>${Object.values(gyms).filter(item => item.medal && item.medal.toLowerCase() === "gold").length}</div>
                 <div><span>Pokestops:</span>${Object.keys(pokestops).length}</div>
                 <div><span>Manual waypoints:</span>${Object.keys(waypoints).length}</div>
                 </div>
